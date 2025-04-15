@@ -28,20 +28,44 @@ public class JogoDaVelha {
     }
 
     public boolean eVencedor(int marca) {
-        return ((tabuleiro[0][0] + tabuleiro[0][1] + tabuleiro[0][2] == marca*3) 	// linha 0 
-|| (tabuleiro[1][0] + tabuleiro[1][1] + tabuleiro[1][2] == marca*3) 			// linha 1 
-|| (tabuleiro[2][0] + tabuleiro[2][1] + tabuleiro[2][2] == marca*3) 			// linha 2 
-|| (tabuleiro[0][0] + tabuleiro[1][0] + tabuleiro[2][0] == marca*3) 			// coluna 0 
-|| (tabuleiro[0][1] + tabuleiro[1][1] + tabuleiro[2][1] == marca*3) 			// coluna 1 
-|| (tabuleiro[0][2] + tabuleiro[1][2] + tabuleiro[2][2] == marca*3) 			// coluna 2 
-|| (tabuleiro[0][0] + tabuleiro[1][1] + tabuleiro[2][2] == marca*3) 			// diagonal 
-|| (tabuleiro[2][0] + tabuleiro[1][1] + tabuleiro[0][2] == marca*3)); 		// diagonal
+        // Verifica linhas
+        for (int i = 0; i < 3; i++) {
+            int cont = 0;
+            for (int j = 0; j < 3; j++) {
+                if (tabuleiro[i][j] == marca) cont++;
+            }
+            if (cont == 3) return true;
+        }
+
+        // Verifica colunas
+        for (int j = 0; j < 3; j++) {
+            int cont = 0;
+            for (int i = 0; i < 3; i++) {
+                if (tabuleiro[i][j] == marca) cont++;
+            }
+            if (cont == 3) return true;
+        }
+
+        // Diagonal principal
+        int diagonal1 = 0;
+        for (int i = 0; i < 3; i++) {
+            if (tabuleiro[i][i] == marca) diagonal1++;
+        }
+        if (diagonal1 == 3) return true;
+
+        // Diagonal secundária
+        int diagonal2 = 0;
+        for (int i = 0; i < 3; i++) {
+            if (tabuleiro[i][3 - 1 - i] == marca) diagonal2++;
+        }
+        if (diagonal2 == 3) return true;
+
+        return false;
     }
 
     public int vencedor() {
-        /** Implementar método indicando se há um vencedor e retornando o valor 1 ou -1
-         * para indicar o vencedor ou zero para indicar empate.
-         */
+        if (eVencedor(X)) return X;
+        if (eVencedor(O)) return O;
         return 2;
     }
 
