@@ -4,19 +4,33 @@ public class ArvoreBinaria implements Arvore {
 
     public ArvoreBinaria() {
         this.raiz = null;
-    }  
+    }
+
+    @Override
+    public void inserir(int valor) {
+        raiz = inserirRecursivo(raiz, valor);
+    }
+
+    private NodoArvore inserirRecursivo(NodoArvore no, int valor) {
+        if (no == null) {
+            return new NodoArvore(valor);
+        }
+
+        if (valor < no.chave) {
+            no.filhoEsquerda = inserirRecursivo(no.filhoEsquerda, valor);
+        } else if (valor > no.chave) {
+            no.filhoDireita = inserirRecursivo(no.filhoDireita, valor);
+        }
+        return no;
+    }
+  
 
     // --- MÉTODO DE INSERÇÃO ---
     // Escreva seus métodos de inserção considerando
     // o método de pesquisa e pesquisaRecursiva como modelo
     // Você deve criar um método inserirRecursivo e
     // chamá-lo a partir do método inserir
-    
-    @Override
-    public void inserir(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'inserir'");
-    }
+
     
 
 
