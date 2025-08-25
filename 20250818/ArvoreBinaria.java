@@ -69,9 +69,6 @@ public class ArvoreBinaria implements Arvore {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
-    public void imprime_preFixado() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+
 
 }
