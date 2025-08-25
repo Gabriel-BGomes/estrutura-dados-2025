@@ -95,8 +95,30 @@ public class ArvoreBinaria implements Arvore {
      * Raiz -> Esquerda -> Direita. 
      */
     @Override
-    public void imprimePreFixado() {
+    public void imprimePreFixado(NodoArvore nodo) {
+        if (nodo != null) {
+            System.out.print(nodo.getInfo() + " "); // raiz
+            imprimePreFixado(nodo.getEsquerda());   // esquerda
+            imprimePreFixado(nodo.getDireita());    // direita
+        }
     }
+    
+    public void imprimeEmOrdem(NodoArvore nodo) {
+        if (nodo != null) {
+            imprimeEmOrdem(nodo.getEsquerda());     // esquerda
+            System.out.print(nodo.getInfo() + " "); // raiz
+            imprimeEmOrdem(nodo.getDireita());      // direita
+        }
+    }
+    
+    public void imprimePosFixado(NodoArvore nodo) {
+        if (nodo != null) {
+            imprimePosFixado(nodo.getEsquerda());   // esquerda
+            imprimePosFixado(nodo.getDireita());    // direita
+            System.out.print(nodo.getInfo() + " "); // raiz
+        }
+    }
+    
     
     /**
      * Método auxiliar recursivo para o caminhamento pré-fixado.
